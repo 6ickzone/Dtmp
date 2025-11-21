@@ -1,0 +1,98 @@
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    /* Neon Color Palette */
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff00ff;
+    --dark-bg: #0d0d1e; 
+    --form-inner-bg: rgba(13, 13, 30, 0.95); /* Dark, near black */
+    --text-color: #ffffff;
+}
+
+/* =========================================
+   BODY & BACKGROUND
+   ========================================= */
+body {
+    /* Centers content vertically and horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    /* Background Image setup */
+    background-image: url('https://i.imgur.com/3s0Kk74.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* =========================================
+   MAIN CONTAINER (HUD Shape)
+   ========================================= */
+.login-container {
+    /* Creates a gradient neon border */
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+    
+    /* Defines the clipped, cut-corner shape */
+    clip-path: polygon(
+        15% 0, 85% 0, 
+        100% 15%, 100% 85%, 
+        85% 100%, 15% 100%, 
+        0 85%, 0 15%
+    );
+    
+    /* Adds a glowing drop shadow */
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3));
+}
+
+/* Inner Layer for Dark Form Background */
+.login-container::before {
+    /* Sets dark inner background, matching the clip-path of the container */
+    background-color: var(--form-inner-bg);
+}
+
+/* =========================================
+   TYPOGRAPHY
+   ========================================= */
+h2 {
+    /* Neon glow effect on title */
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* =========================================
+   INPUT FIELDS
+   ========================================= */
+input[type="text"], 
+input[type="email"], 
+input[type="password"] {
+    /* Partially transparent background with a subtle border glow */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    
+    /* Applies a clipped/cut-corner shape to the input fields */
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%);
+}
+
+input:focus {
+    /* Adds stronger glow and border color on focus */
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+/* =========================================
+   SUBMIT BUTTON
+   ========================================= */
+.submit-btn {
+    /* Cut-corner shape for the button */
+    clip-path: polygon(
+        10% 0, 100% 0, 
+        100% 70%, 90% 100%, 
+        0 100%, 0 30%
+    );
+}
+
+.submit-btn:hover {
+    /* Hover effect with glow and slight lift */
+    box-shadow: 0 0 25px var(--neon-cyan);
+    transform: translateY(-2px);
+}
