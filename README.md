@@ -27,7 +27,7 @@ Here are the 5 experimental templates included in this repository:
     git clone [https://github.com/6ickzone/login.git](https://github.com/6ickzone/login.git)
     ```
 2.  Open the folder of the template you want to see (e.g., `login5`).
-3.  Open `index.html` in your browser.
+3.  Open source :) 
 
 ---
 
