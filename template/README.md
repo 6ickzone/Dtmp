@@ -1,6 +1,5 @@
 # 🧪 Login Template Collection
 
-This project is for **Educational Research** purposes. It explores modern UI/UX, CSS animations, and interactive designs without using heavy frameworks.
 
 ![Project Preview](preview.gif)
 
@@ -21,13 +20,6 @@ Here are the 5 experimental templates included in this repository:
 * **CSS3** (Animations, 3D Transforms, Flexbox/Grid)
 * **Vanilla JavaScript** (For physics and parallax effects)
 
-## 🚀 How to Use
-1.  Clone this repository:
-    ```bash
-    git clone [https://github.com/6ickzone/login.git](https://github.com/6ickzone/login.git)
-    ```
-2.  Open the folder of the template you want to see (e.g., `login5`).
-3.  Open `index.html` in your browser.
 
 ---
 ## 📜 Credits
