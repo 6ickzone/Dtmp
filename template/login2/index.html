@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Access</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scanline"></div>
+
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <div class="title">ROOT ACCESS // SECURE SHELL</div>
+        </div>
+        
+        <div class="terminal-body">
+            <div class="system-msg">
+                <p>> ESTABLISHING CONNECTION...</p>
+                <p>> SYSTEM ENCRYPTED.</p>
+                <p>> ENTER CREDENTIALS TO PROCEED<span class="blink">_</span></p>
+            </div>
+
+            <form class="login-form">
+                <div class="input-line">
+                    <span class="prompt">user@system:~$</span>
+                    <input type="text" id="username" autocomplete="off" autofocus>
+                </div>
+                
+                <div class="input-line">
+                    <span class="prompt">pass@system:~$</span>
+                    <input type="password" id="password">
+                </div>
+                
+                <button type="submit" class="cmd-btn">[ EXECUTE LOGIN ]</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
