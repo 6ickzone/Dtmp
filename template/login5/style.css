@@ -1,0 +1,274 @@
+:root {
+    --bg-color: #111;
+    --neon-1: #00ccff;
+    --neon-2: #d400d4;
+    --neon-3: #00ff99;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0c0c0c;
+    overflow: hidden;
+}
+
+/* MAIN CONTAINER */
+.container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FORM BOX WRAPPER */
+.box {
+    position: relative;
+    width: 100%;
+    min-height: 450px;
+    background: #1c1c1c;
+    border-radius: 10px;
+    overflow: hidden;       /* Essential */
+    isolation: isolate;     /* Fixes mobile rendering issues */
+    clip-path: inset(0 0 0 0 round 10px); /* Ensures glow stays inside */
+}
+
+/* Soft background glow */
+.box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 0%,
+        rgba(0, 204, 255, 0.25),
+        rgba(212, 0, 212, 0.15),
+        rgba(0, 0, 0, 0) 70%
+    );
+    filter: blur(40px);
+    z-index: 0;
+    animation: softGlow 10s ease-in-out infinite alternate;
+    opacity: 0.45;
+}
+
+/* Rotating Border Effect */
+.box::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 10px;
+    padding: 2px;
+    background: conic-gradient(
+        var(--neon-1),
+        var(--neon-2),
+        var(--neon-3),
+        var(--neon-1)
+    );
+    -webkit-mask: 
+        linear-gradient(#000 0 0) content-box, 
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    animation: borderSpin 8s linear infinite;
+    opacity: 0.6;
+}
+
+/* ANIMATIONS */
+@keyframes softGlow {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.2); opacity: 0.6; }
+}
+
+@keyframes borderSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* INNER CONTENT */
+.content {
+    position: absolute;
+    inset: 3px;
+    background: #222;
+    border-radius: 8px;
+    z-index: 2;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-image: 
+        linear-gradient(#2a2a2a 1px, transparent 1px), 
+        linear-gradient(90deg, #2a2a2a 1px, transparent 1px);
+    background-size: 20px 20px;
+
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+}
+
+/* TITLES & TEXT */
+.title {
+    color: var(--neon-1);
+    font-size: 2em;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+.dot {
+    color: var(--neon-2);
+    animation: blink 2s infinite;
+}
+
+/* INPUT FIELDS */
+.input-box {
+    position: relative;
+    width: 100%;
+    margin-top: 35px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+    z-index: 10;
+}
+
+.input-box span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    pointer-events: none;
+    color: #8f8f8f;
+    font-size: 1em;
+    transition: 0.5s;
+}
+
+/* Floating Label Logic */
+.input-box input:valid ~ span,
+.input-box input:focus ~ span {
+    color: var(--neon-1);
+    transform: translateY(-34px);
+    font-size: 0.75em;
+}
+
+.input-box i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #333;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+/* Input Border Activation */
+.input-box input:valid ~ i,
+.input-box input:focus ~ i {
+    height: 44px;
+    border: 1px solid var(--neon-1);
+    background: rgba(0, 204, 255, 0.05);
+}
+
+/* LINKS AREA */
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 40px;
+}
+
+.links a {
+    font-size: 0.75em;
+    color: #8f8f8f;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    color: var(--neon-1);
+}
+
+/* BUTTON STYLING */
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.magnetic-btn {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--neon-1), var(--neon-2));
+    border-radius: 4px;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+    transition: 0.3s;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    color: #000;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.1em;
+    pointer-events: none;
+}
+
+.magnetic-btn:hover .btn-bg {
+    box-shadow: 
+        0 0 40px rgba(0, 204, 255, 0.8), 
+        0 0 80px rgba(212, 0, 212, 0.6);
+    filter: brightness(1.2);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .box {
+        min-height: 400px;
+    }
+
+    .content {
+        padding: 30px 20px;
+    }
+
+    .title {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .input-box {
+        margin-top: 25px;
+    }
+}
