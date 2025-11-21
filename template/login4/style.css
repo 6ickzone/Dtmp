@@ -1,0 +1,160 @@
+/* ================= VARIABLES & RESET ================= */
+:root {
+    --space-bg: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    --moon-glow: rgba(100, 180, 255, 0.2);
+    --panel-bg: rgba(20, 20, 30, 0.6);
+    --accent-blue: #00d2ff;
+    --text-light: #e0e6ff;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--space-bg);
+    font-family: 'Exo 2', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1500px; /* Perspektif 3D */
+}
+
+/* Credit to Anastasia Goodwin for the original star concept */
+#stars, #stars2, #stars3 {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    animation: animStar 150s linear infinite; /* Bintang bergerak super lambat */
+}
+
+#stars::after, #stars2::after, #stars3::after { content: " "; position: absolute; top: 2000px; }
+
+/* Layer 1: Bintang Kecil */
+#stars {
+    width: 1px; height: 1px; background: transparent;
+    box-shadow: 1456px 453px #FFF, 123px 1643px #FFF, 1678px 834px #FFF, 345px 876px #FFF, 1234px 456px #FFF, 876px 1234px #FFF, 567px 890px #FFF, 112px 334px #FFF, 1645px 1645px #FFF, 345px 345px #FFF, 678px 678px #FFF, 1789px 987px #FFF, 234px 567px #FFF, 678px 234px #FFF, 123px 890px #FFF, 1543px 132px #FFF, 1765px 456px #FFF, 234px 1678px #FFF; 
+}
+#stars::after { box-shadow: inherit; }
+
+#stars2 {
+    width: 2px; height: 2px; background: transparent;
+    box-shadow: 1645px 1645px #FFF, 345px 345px #FFF, 678px 678px #FFF, 1789px 987px #FFF, 234px 567px #FFF, 678px 234px #FFF, 123px 890px #FFF, 1543px 132px #FFF, 1765px 456px #FFF, 234px 1678px #FFF;
+    animation-duration: 100s;
+}
+#stars2::after { box-shadow: inherit; top: 2000px; }
+
+#stars3 {
+    width: 3px; height: 3px; background: transparent;
+    box-shadow: 1789px 987px #FFF, 234px 567px #FFF, 678px 234px #FFF, 123px 890px #FFF, 1543px 132px #FFF;
+    animation-duration: 80s;
+}
+#stars3::after { box-shadow: inherit; top: 2000px; }
+
+@keyframes animStar { from { transform: translateY(0px); } to { transform: translateY(-2000px); } }
+
+
+/* ================= 3D SCENE & FLOATING MODULE ================= */
+.orbit-scene {
+    width: 100%;
+    display: flex; justify-content: center; align-items: center;
+    transform-style: preserve-3d;
+}
+
+.floating-module {
+    position: relative;
+    transform-style: preserve-3d;
+    /* Animasi Melayang Zero-G */
+    animation: drift 12s ease-in-out infinite alternate;
+}
+
+/* Animasi Melayang Lambat */
+@keyframes drift {
+    0% { transform: translateY(0px) rotateX(0deg) rotateZ(0deg); }
+    50% { transform: translateY(-20px) rotateX(2deg) rotateZ(-1deg); }
+    100% { transform: translateY(10px) rotateX(-1deg) rotateZ(1deg); }
+}
+
+/* ================= CSS MOON & SATELLITES ================= */
+.css-moon {
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(-45deg, #2b3d52, #0d121a);
+    /* Efek Kawah & Glow pakai box-shadow inset */
+    box-shadow: 
+        inset -20px -20px 50px rgba(0,0,0,0.8),
+        inset 10px 10px 30px rgba(100, 180, 255, 0.1),
+        0 0 80px var(--moon-glow);
+    top: -100px; right: -80px;
+    z-index: -1; /* Di belakang form */
+    transform: translateZ(-100px); /* Jauh di belakang */
+}
+
+.satellite {
+    position: absolute; background: #fff; border-radius: 50%;
+    z-index: 2; box-shadow: 0 0 15px var(--accent-blue);
+}
+.sat-1 { width: 15px; height: 15px; top: -20px; left: 20px; transform: translateZ(80px); }
+.sat-2 { width: 8px; height: 8px; bottom: 30px; right: -30px; transform: translateZ(60px); background: var(--accent-blue); }
+
+
+/* ================= LOGIN PANEL GLASS ================= */
+.login-panel {
+    width: 350px;
+    padding: 40px;
+    background: var(--panel-bg);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Highlight atas */
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    color: var(--text-light);
+    transform: translateZ(0px);
+}
+
+.panel-header h3 { margin: 0; font-size: 1.8em; letter-spacing: 2px; }
+.light { font-weight: 300; color: var(--accent-blue); }
+.status-indicator {
+    display: inline-block; font-size: 0.7em; margin-top: 10px; padding: 3px 8px;
+    background: rgba(0, 210, 255, 0.1); border: 1px solid var(--accent-blue);
+    border-radius: 4px; color: var(--accent-blue); letter-spacing: 1px;
+}
+
+/* ================= SPACE FORM INPUTS ================= */
+.space-form { margin-top: 30px; display: flex; flex-direction: column; gap: 25px; }
+.input-wrapper { position: relative; }
+.input-wrapper input {
+    width: 100%; padding: 12px 0; background: transparent; border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2); color: #fff;
+    font-family: inherit; font-size: 1em; outline: none; transition: 0.3s;
+}
+.input-wrapper label {
+    position: absolute; left: 0; top: 12px; pointer-events: none;
+    color: rgba(255,255,255,0.5); font-size: 0.9em; transition: 0.3s;
+}
+.input-wrapper input:focus ~ label,
+.input-wrapper input:valid ~ label {
+    top: -15px; font-size: 0.7em; color: var(--accent-blue);
+}
+.focus-border {
+    position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+    background: var(--accent-blue); transition: 0.4s;
+}
+.input-wrapper input:focus ~ .focus-border { width: 100%; }
+
+/* ================= ENGAGE BUTTON ================= */
+.engage-btn {
+    position: relative; width: 100%; padding: 15px; margin-top: 10px;
+    background: rgba(0, 210, 255, 0.1); border: 1px solid var(--accent-blue);
+    color: var(--accent-blue); font-family: inherit; font-size: 1em;
+    font-weight: 600; letter-spacing: 3px; cursor: pointer;
+    overflow: hidden; transition: 0.3s;
+}
+.engage-btn:hover {
+    background: var(--accent-blue); color: #000;
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
+}
+.btn-glow {
+    position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+    opacity: 0; transition: 0.5s; transform: scale(0.5);
+}
+.engage-btn:hover .btn-glow { opacity: 1; transform: scale(1); }
