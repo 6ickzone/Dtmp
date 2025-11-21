@@ -22,12 +22,11 @@ body {
 /* Credit to Anastasia Goodwin for the original star concept */
 #stars, #stars2, #stars3 {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    animation: animStar 150s linear infinite; /* Bintang bergerak super lambat */
+    animation: animStar 150s linear infinite; 
 }
 
 #stars::after, #stars2::after, #stars3::after { content: " "; position: absolute; top: 2000px; }
 
-/* Layer 1: Bintang Kecil */
 #stars {
     width: 1px; height: 1px; background: transparent;
     box-shadow: 1456px 453px #FFF, 123px 1643px #FFF, 1678px 834px #FFF, 345px 876px #FFF, 1234px 456px #FFF, 876px 1234px #FFF, 567px 890px #FFF, 112px 334px #FFF, 1645px 1645px #FFF, 345px 345px #FFF, 678px 678px #FFF, 1789px 987px #FFF, 234px 567px #FFF, 678px 234px #FFF, 123px 890px #FFF, 1543px 132px #FFF, 1765px 456px #FFF, 234px 1678px #FFF; 
@@ -61,11 +60,9 @@ body {
 .floating-module {
     position: relative;
     transform-style: preserve-3d;
-    /* Animasi Melayang Zero-G */
     animation: drift 12s ease-in-out infinite alternate;
 }
 
-/* Animasi Melayang Lambat */
 @keyframes drift {
     0% { transform: translateY(0px) rotateX(0deg) rotateZ(0deg); }
     50% { transform: translateY(-20px) rotateX(2deg) rotateZ(-1deg); }
@@ -78,14 +75,13 @@ body {
     width: 300px; height: 300px;
     border-radius: 50%;
     background: linear-gradient(-45deg, #2b3d52, #0d121a);
-    /* Efek Kawah & Glow pakai box-shadow inset */
     box-shadow: 
         inset -20px -20px 50px rgba(0,0,0,0.8),
         inset 10px 10px 30px rgba(100, 180, 255, 0.1),
         0 0 80px var(--moon-glow);
     top: -100px; right: -80px;
-    z-index: -1; /* Di belakang form */
-    transform: translateZ(-100px); /* Jauh di belakang */
+    z-index: -1;
+    transform: translateZ(-100px);
 }
 
 .satellite {
